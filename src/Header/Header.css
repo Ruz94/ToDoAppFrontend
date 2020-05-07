@@ -1,0 +1,21 @@
+header,
+h1 {
+  background-color: #e0e0e0;
+  text-align: center;
+  margin: 0 auto;
+  padding: 5px;
+  color: #212121;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+@media (min-width: 746px) {
+  header {
+    height: 85px;
+  }
+
+  header,
+  h1 {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,26 @@
+.addTaskItem > span {
+  margin-right: 8px;
+  margin-left: 3px;
+}
+
+.addTaskItem {
+  font-size: 0;
+}
+
+.addTaskItem * {
+  font-size: 15px;
+}
+
+.addTaskItem > input {
+  background-color: transparent;
+  border: 1px solid lightgray;
+  font-size: 13px;
+  padding-left: 5px;
+  width: calc(100% - 20px);
+}
+
+@media (min-width: 576px) {
+  .addTaskItem > input {
+    font-size: 15px;
+  }
+}

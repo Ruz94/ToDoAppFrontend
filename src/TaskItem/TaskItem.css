@@ -1,0 +1,39 @@
+.taskItem p {
+  margin: 0;
+  color: #212121;
+  font-size: 15px;
+}
+
+.taskItem p input {
+  border: none;
+  background: transparent;
+}
+
+.taskItem p input[type="checkbox"] {
+  width: 15px;
+  display: inline-block;
+  margin: 0;
+}
+
+.taskItem p input[type="checkbox"]:hover {
+  transform: scale(1.5);
+}
+
+.taskItem__listItems {
+  width: calc(100% - 15px - 10px);
+  display: inline-block;
+  margin: 0;
+  padding-left: 5px;
+}
+
+.taskItem p span {
+  margin: 0;
+  width: 10px;
+  display: inline-block;
+}
+
+@media (min-width: 576px) {
+  .taskItem p {
+    font-size: 18px;
+  }
+}
