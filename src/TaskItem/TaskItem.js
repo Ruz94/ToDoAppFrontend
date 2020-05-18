@@ -13,7 +13,7 @@ function TaskItem({ text = "", completed = false, id, deleteTask = () => {}, tog
   return (
     <div className="taskItem">
       <p>
-        <input type="checkbox" value={completed} onClick={togTask} />
+        <input type="checkbox" defaultChecked={completed} onClick={togTask} />
         <input type="text" defaultValue={text} className={`taskItem__listItem taskItem__listItem${completed ? "--complete" : ""}`} />
         <span onClick={delTask}>×</span>
       </p>

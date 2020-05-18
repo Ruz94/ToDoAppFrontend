@@ -78,7 +78,7 @@ function App() {
           <div className="col-12 col-sm-6 col-md-4">
             <NewList />
             {lists.map(({ title = "", tasks = [], id }) => (
-              <List listId={id} title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
+              <List key={id} listId={id} title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
             ))}
           </div>
         </div>
