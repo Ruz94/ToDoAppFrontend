@@ -1,5 +1,5 @@
 {
-  "homepage": "https://ruz94.github.io/ToDoApplication",
+  "homepage": "https://ruz94.github.io/ToDoAppFrontend",
   "name": "todo_react_application",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +10,8 @@
     "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "uuid": "^8.0.0"
   },
   "scripts": {
     "predeploy": "npm run build",

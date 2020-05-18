@@ -19,13 +19,16 @@
   transform: scale(1.5);
 }
 
-.taskItem__listItems {
+.taskItem__listItem {
   width: calc(100% - 15px - 10px);
   display: inline-block;
   margin: 0;
   padding-left: 5px;
 }
 
+.taskItem__listItem--complete {
+  text-decoration: line-through;
+}
 .taskItem p span {
   margin: 0;
   width: 10px;

@@ -30,6 +30,7 @@
 
   .newList p {
     font-size: 20px;
+    display: block;
   }
 
   .newList__addIcon {
