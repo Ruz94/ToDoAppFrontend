@@ -33,10 +33,16 @@ function App() {
     },
   ]);
 
-  //create add task function - console.log("testing")
-  const addTask = (task) => {
-    console.log("adding");
-    //setLists([{ text: task, completed: false, id: uuidv4(), dateCreated: Date.now() }, ...lists]);
+  const addTask = (task, id) => {
+    const updatedTasks = lists.map((list) => {
+      const { tasks = [] } = list;
+      if (list.id === id) {
+        return { ...list, tasks: [{ text: task, completed: false, id: uuidv4(), dateCreated: Date.now() }, ...tasks] };
+      }
+      return list;
+    });
+    console.log(updatedTasks);
+    setLists(updatedTasks);
   };
 
   function deleteTask(id) {
@@ -50,15 +56,14 @@ function App() {
   function toggleTask(id) {
     const updatedTasks = lists.map((list) => {
       const { tasks = [] } = list;
-      // if (task.id === id) {
-      //   task.completed = !task.completed;
-      // }
       return {
         ...list,
-        tasks: tasks.map(({ id: taskid }) => {
+        tasks: tasks.map((task) => {
+          const { id: taskid } = task;
           if (taskid === id) {
-            tasks.completed = !tasks.completed;
+            task.completed = !task.completed;
           }
+          return task;
         }),
       };
     });
@@ -72,8 +77,8 @@ function App() {
         <div className="row">
           <div className="col-12 col-sm-6 col-md-4">
             <NewList />
-            {lists.map(({ title = "", tasks = [] }) => (
-              <List title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
+            {lists.map(({ title = "", tasks = [], id }) => (
+              <List listId={id} title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
             ))}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AddTaskItem.css";
 
-function TaskItem({ addTask = () => {} }) {
+function TaskItem({ listId, addTask = () => {} }) {
   const [task, setTask] = useState("");
 
   const handleKeyPress = ({ key }) => {
@@ -15,7 +15,7 @@ function TaskItem({ addTask = () => {} }) {
   };
 
   const addAndResetTask = () => {
-    addTask(task);
+    addTask(task, listId);
     setTask("");
   };
 
