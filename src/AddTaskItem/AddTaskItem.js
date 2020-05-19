@@ -5,7 +5,7 @@ function TaskItem({ listId, addTask = () => {} }) {
   const [task, setTask] = useState("");
 
   const handleKeyPress = ({ key }) => {
-    if (key === "Enter") {
+    if (key === "Enter" && task.length) {
       addAndResetTask();
     }
   };

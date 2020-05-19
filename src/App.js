@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import Header from "./Header/Header";
@@ -73,16 +78,16 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-sm-6 col-md-4">
+      <Container>
+        <Row>
+          <Col sm={6} md={4}>
             <NewList />
             {lists.map(({ title = "", tasks = [], id }) => (
               <List key={id} listId={id} title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
             ))}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }
