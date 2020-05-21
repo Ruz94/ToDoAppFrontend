@@ -38,6 +38,20 @@ function App() {
     },
   ]);
 
+  const addList = (newTitle, id) => {
+    if (id) {
+      const updatedLists = lists.map((list) => {
+        if (list.id === id) {
+          return { ...list, title: newTitle };
+        }
+        return list;
+      });
+      setLists(updatedLists);
+    }
+
+    setLists([{ title: newTitle, id: uuidv4(), dateCreated: Date.now(), tasks: [] }, ...lists]);
+  };
+
   const addTask = (task, id) => {
     const updatedTasks = lists.map((list) => {
       const { tasks = [] } = list;
@@ -81,7 +95,7 @@ function App() {
       <Container>
         <Row>
           <Col sm={6} md={4}>
-            <NewList />
+            <NewList addList={addList} />
             {lists.map(({ title = "", tasks = [], id }) => (
               <List key={id} listId={id} title={title} tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} addTask={addTask} />
             ))}

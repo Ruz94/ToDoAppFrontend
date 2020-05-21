@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
 import "./NewList.css";
 
-function NewList() {
+function NewList({ id, addList = () => {}, modifyingList = false }) {
   const [smShow, setSmShow] = useState(false);
   const [listName, setListName] = useState("");
 
@@ -14,6 +13,15 @@ function NewList() {
   const updateListName = ({ target: { value = "" } = {} }) => {
     setListName(value);
   };
+
+  const modifyList = () => {
+    addList(listName, id);
+    handleClose();
+  };
+
+  if (modifyingList) {
+    return <h1>Modifying</h1>;
+  }
 
   return (
     <>
@@ -30,7 +38,7 @@ function NewList() {
         </Modal.Header>
         <Modal.Body>
           <label>
-            List Name:
+            List Name
             <input type="text" placeholder="Enter list name" value={listName} onChange={updateListName} />
           </label>
         </Modal.Body>
@@ -38,7 +46,7 @@ function NewList() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose} disabled={!listName}>
+          <Button variant="primary" onClick={modifyList} disabled={!listName}>
             Save Changes
           </Button>
         </Modal.Footer>

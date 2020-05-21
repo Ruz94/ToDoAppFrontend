@@ -20,6 +20,16 @@
   font-size: 20px;
 }
 
+label {
+  text-transform: uppercase;
+}
+
+input {
+  padding: 10px;
+  line-height: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
 @media (min-width: 746px) {
   .newList {
     display: flex;
