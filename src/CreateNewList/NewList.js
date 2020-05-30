@@ -1,27 +1,17 @@
 import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import Modal from "../Modal/Modal";
 import "./NewList.css";
 
-function NewList({ id, addList = () => {}, modifyingList = false }) {
+function NewList({ id, addList = () => {} }) {
   const [smShow, setSmShow] = useState(false);
-  const [listName, setListName] = useState("");
 
   const handleClose = () => setSmShow(false);
   const handleShow = () => setSmShow(true);
 
-  const updateListName = ({ target: { value = "" } = {} }) => {
-    setListName(value);
-  };
-
-  const modifyList = () => {
+  const onSave = (listName) => {
     addList(listName, id);
     handleClose();
   };
-
-  if (modifyingList) {
-    return <h1>Modifying</h1>;
-  }
 
   return (
     <>
@@ -31,26 +21,7 @@ function NewList({ id, addList = () => {}, modifyingList = false }) {
           +
         </button>
       </div>
-
-      <Modal size="sm" show={smShow} onHide={() => setSmShow(false)} aria-labelledby="example-modal-sizes-title-sm">
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">Create New List</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <label>
-            List Name
-            <input type="text" placeholder="Enter list name" value={listName} onChange={updateListName} />
-          </label>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={modifyList} disabled={!listName}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {smShow ? <Modal title="Create New List" status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}
     </>
   );
 }
