@@ -52,6 +52,17 @@ function App() {
     }
   };
 
+  function deleteList(id) {
+    const updatedList = lists.filter((list) => {
+      if (list.id !== id) {
+        return list;
+      }
+      return null;
+    });
+    console.log(updatedList);
+    setLists(updatedList);
+  }
+
   const addTask = (task, id) => {
     const updatedTasks = lists.map((list) => {
       const { tasks = [] } = list;
@@ -106,6 +117,7 @@ function App() {
                 toggleTask={toggleTask}
                 addTask={addTask}
                 addList={addList}
+                deleteList={deleteList}
               />
             ))}
           </Col>
