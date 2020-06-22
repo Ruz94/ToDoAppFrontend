@@ -49,11 +49,9 @@ function App() {
       title: newTitle,
       dateCreated: Date.now(),
     };
-    // do put request
     axios
       .put(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/${id}`, amendedList)
       .then((response) => {
-        // map Lists to find the updated List and update
         const putLists = lists.map((list) => {
           if (list.listId === id) {
             return { ...list, title: newTitle };
@@ -67,7 +65,6 @@ function App() {
       });
   };
   const modifyList = (newTitle, id) => {
-    console.log(newTitle, id);
     if (id) {
       updateList(newTitle, id);
     } else {
