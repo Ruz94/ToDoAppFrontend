@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import "./NewList.css";
 
-function NewList({ id, addList = () => {} }) {
+function NewList({ id, modifyList = () => {} }) {
   const [smShow, setSmShow] = useState(false);
 
   const handleClose = () => setSmShow(false);
   const handleShow = () => setSmShow(true);
 
   const onSave = (listName) => {
-    addList(listName, id);
+    modifyList(listName, id);
     handleClose();
   };
 

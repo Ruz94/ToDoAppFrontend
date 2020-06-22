@@ -11,7 +11,7 @@ function List({
   deleteTask = () => {},
   toggleTask = () => {},
   addTask = () => {},
-  addList = () => {},
+  modifyList = () => {},
   deleteList = () => {},
 }) {
   //sort tasks by date created then put the uncompleted tasks at the top
@@ -23,7 +23,7 @@ function List({
   const handleShow = () => setSmShow(true);
 
   const saveChanges = (name) => {
-    addList(name, listId);
+    modifyList(name, listId);
     handleClose();
   };
 
@@ -44,8 +44,15 @@ function List({
       </button>
       {smShow ? <Modal title="Rename List" listname={title} status={smShow} onSave={saveChanges} handleClose={handleClose} /> : ""}
       <AddTaskItem listId={listId} addTask={addTask} />
-      {tasks.map(({ text = "", completed = false, id }) => (
-        <TaskItem key={id} id={id} text={text} completed={completed} deleteTask={deleteTask} toggleTask={toggleTask} />
+      {tasks.map(({ text = "", completed = false, taskId }) => (
+        <TaskItem
+          key={`TaskItem_${taskId}`}
+          id={taskId}
+          text={text}
+          completed={completed}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+        />
       ))}
     </div>
   );

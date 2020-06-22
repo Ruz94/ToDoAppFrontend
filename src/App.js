@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,76 +12,123 @@ import List from "./List/List";
 import NewList from "./CreateNewList/NewList";
 
 function App() {
-  const [lists, setLists] = useState([
-    {
-      title: "Shopping List",
-      id: uuidv4(),
-      dateCreated: Date.now(),
-      tasks: [
-        { text: "Paint and oil outdoor furniture", completed: true, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Hang pictures in bedroom", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Order party decorations", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Order replacement printer toner", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Organise Metrolink refund", completed: true, id: uuidv4(), dateCreated: Date.now() },
-      ],
-    },
-    {
-      title: "Shopping List 2",
-      id: uuidv4(),
-      dateCreated: Date.now(),
-      tasks: [
-        { text: "Paint and oil outdoor furniture", completed: true, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Hang pictures in bedroom", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Order party decorations", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Order replacement printer toner", completed: false, id: uuidv4(), dateCreated: Date.now() },
-        { text: "Organise Metrolink refund", completed: true, id: uuidv4(), dateCreated: Date.now() },
-      ],
-    },
-  ]);
+  const [lists, setLists] = useState([]);
 
-  const addList = (newTitle, id) => {
-    if (id) {
-      const updatedLists = lists.map((list) => {
-        if (list.id === id) {
-          return { ...list, title: newTitle };
-        }
-        return list;
+  useEffect(() => {
+    axios
+      .get("https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/")
+      .then((response) => {
+        setLists(response.data.lists);
+      })
+      .catch((error) => {
+        console.log("Error fetching data", error);
       });
-      setLists(updatedLists);
+  }, []);
+
+  const addList = (newTitle) => {
+    const newList = {
+      title: newTitle,
+      dateCreated: Date.now(),
+    };
+
+    axios
+      .post("https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/", newList)
+      .then((response) => {
+        const resList = response.data.lists.find(({ title }) => {
+          return title === newTitle;
+        });
+        setLists([...lists, resList]);
+      })
+      .catch((error) => {
+        console.log("Error adding a list", error);
+      });
+  };
+
+  const updateList = (newTitle, id) => {
+    const amendedList = {
+      title: newTitle,
+      dateCreated: Date.now(),
+    };
+    // do put request
+    axios
+      .put(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/${id}`, amendedList)
+      .then((response) => {
+        // map Lists to find the updated List and update
+        const putLists = lists.map((list) => {
+          if (list.listId === id) {
+            return { ...list, title: newTitle };
+          }
+          return list;
+        });
+        setLists(putLists);
+      })
+      .catch((error) => {
+        console.log("Error updating a list", error);
+      });
+  };
+  const modifyList = (newTitle, id) => {
+    console.log(newTitle, id);
+    if (id) {
+      updateList(newTitle, id);
     } else {
-      setLists([{ title: newTitle, id: uuidv4(), dateCreated: Date.now(), tasks: [] }, ...lists]);
+      addList(newTitle);
     }
   };
 
   function deleteList(id) {
-    const updatedList = lists.filter((list) => {
-      if (list.id !== id) {
-        return list;
-      }
-      return null;
-    });
-    console.log(updatedList);
-    setLists(updatedList);
+    axios
+      .delete(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/${id}`)
+      .then((response) => {
+        const updatedList = lists.filter((list) => {
+          if (list.listId !== id) {
+            return list;
+          }
+          return null;
+        });
+        setLists(updatedList);
+      })
+      .catch((error) => {
+        console.log("Error deleting list", error);
+      });
   }
 
-  const addTask = (task, id) => {
-    const updatedTasks = lists.map((list) => {
-      const { tasks = [] } = list;
-      if (list.id === id) {
-        return { ...list, tasks: [{ text: task, completed: false, id: uuidv4(), dateCreated: Date.now() }, ...tasks] };
-      }
-      return list;
-    });
-    console.log(updatedTasks);
-    setLists(updatedTasks);
+  const addTask = (task, listId) => {
+    const newTask = {
+      text: task,
+      listId: listId,
+      dateCreated: Date.now(),
+    };
+
+    axios
+      .post("https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/tasks", newTask)
+      .then((response) => {
+        const postTasks = lists.map((list) => {
+          const { tasks = [] } = list;
+          if (list.listId === listId) {
+            return { ...list, tasks: [response.data.task, ...tasks] };
+          }
+          return list;
+        });
+        setLists(postTasks);
+      })
+      .catch((error) => {
+        console.log("Error adding a task", error);
+      });
   };
 
   function deleteTask(id) {
-    const updatedTasks = lists.map((list) => {
-      const { tasks = [] } = list;
-      return { ...list, tasks: tasks.filter(({ id: taskid }) => taskid !== id) };
-    });
-    setLists(updatedTasks);
+    axios
+      .delete(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/tasks/${id}`)
+      .then((response) => {
+        const delTasks = lists.map((list) => {
+          const { tasks = [] } = list;
+          return { ...list, tasks: tasks.filter(({ taskId }) => taskId !== id) };
+        });
+        setLists(delTasks);
+      })
+      .catch((error) => {
+        console.log("Error deleting task", error);
+      });
   }
 
   function toggleTask(id) {
@@ -106,17 +154,17 @@ function App() {
       <Container>
         <Row>
           <Col sm={6} md={4}>
-            <NewList addList={addList} />
-            {lists.map(({ title = "", tasks = [], id }) => (
+            <NewList modifyList={modifyList} />
+            {lists.map(({ title = "", tasks = [], listId }) => (
               <List
-                key={id}
-                listId={id}
+                key={`list_${listId}`}
+                listId={listId}
                 title={title}
                 tasks={tasks}
                 deleteTask={deleteTask}
                 toggleTask={toggleTask}
                 addTask={addTask}
-                addList={addList}
+                modifyList={modifyList}
                 deleteList={deleteList}
               />
             ))}
