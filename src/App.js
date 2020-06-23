@@ -4,8 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
-import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import Header from "./Header/Header";
 import List from "./List/List";
@@ -28,7 +26,6 @@ function App() {
   const addList = (newTitle) => {
     const newList = {
       title: newTitle,
-      dateCreated: Date.now(),
     };
 
     axios
@@ -47,7 +44,6 @@ function App() {
   const updateList = (newTitle, id) => {
     const amendedList = {
       title: newTitle,
-      dateCreated: Date.now(),
     };
     axios
       .put(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/lists/${id}`, amendedList)
@@ -93,7 +89,6 @@ function App() {
     const newTask = {
       text: task,
       listId: listId,
-      dateCreated: Date.now(),
     };
 
     axios
@@ -131,7 +126,6 @@ function App() {
   const updateTask = (task, id) => {
     const amendedTask = {
       text: task,
-      dateCreated: Date.now(),
     };
     axios
       .put(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/tasks/${id}`, amendedTask)
@@ -140,7 +134,6 @@ function App() {
           const tasks = list.tasks.map((task) => {
             if (task.taskId === id) {
               task.text = amendedTask.text;
-              task.dateCreated = amendedTask.dateCreated;
             }
             return task;
           });
@@ -160,8 +153,8 @@ function App() {
       return {
         ...list,
         tasks: tasks.map((task) => {
-          const { id: taskid } = task;
-          if (taskid === id) {
+          const { taskId } = task;
+          if (taskId === id) {
             task.completed = !task.completed;
           }
           return task;
