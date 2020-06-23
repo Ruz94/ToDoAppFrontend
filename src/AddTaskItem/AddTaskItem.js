@@ -10,7 +10,7 @@ function TaskItem({ listId, addTask = () => {} }) {
     }
   };
 
-  const updateTask = ({ target: { value = "" } = {} }) => {
+  const modifyTask = ({ target: { value = "" } = {} }) => {
     setTask(value);
   };
 
@@ -22,7 +22,7 @@ function TaskItem({ listId, addTask = () => {} }) {
   return (
     <div className="addTaskItem">
       <span onClick={addAndResetTask}>+</span>
-      <input type="text" placeholder="Add New Item..." value={task} onChange={updateTask} onKeyPress={handleKeyPress} />
+      <input type="text" placeholder="Add New Item..." value={task} onChange={modifyTask} onKeyPress={handleKeyPress} />
     </div>
   );
 }

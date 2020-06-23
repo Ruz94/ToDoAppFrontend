@@ -128,6 +128,32 @@ function App() {
       });
   }
 
+  const updateTask = (task, id) => {
+    const amendedTask = {
+      text: task,
+      dateCreated: Date.now(),
+    };
+    axios
+      .put(`https://1f0n1weqrd.execute-api.eu-west-2.amazonaws.com/dev/tasks/${id}`, amendedTask)
+      .then((response) => {
+        const putTasks = lists.map((list) => {
+          const tasks = list.tasks.map((task) => {
+            if (task.taskId === id) {
+              task.text = amendedTask.text;
+              task.dateCreated = amendedTask.dateCreated;
+            }
+            return task;
+          });
+          list.tasks = tasks;
+          return list;
+        });
+        setLists(putTasks);
+      })
+      .catch((error) => {
+        console.log("Error updating a list", error);
+      });
+  };
+
   function toggleTask(id) {
     const updatedTasks = lists.map((list) => {
       const { tasks = [] } = list;
@@ -160,6 +186,7 @@ function App() {
                 tasks={tasks}
                 deleteTask={deleteTask}
                 toggleTask={toggleTask}
+                updateTask={updateTask}
                 addTask={addTask}
                 modifyList={modifyList}
                 deleteList={deleteList}

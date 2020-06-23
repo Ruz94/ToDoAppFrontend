@@ -11,6 +11,7 @@ function List({
   deleteTask = () => {},
   toggleTask = () => {},
   addTask = () => {},
+  updateTask = () => {},
   modifyList = () => {},
   deleteList = () => {},
 }) {
@@ -52,6 +53,7 @@ function List({
           completed={completed}
           deleteTask={deleteTask}
           toggleTask={toggleTask}
+          updateTask={updateTask}
         />
       ))}
     </div>
