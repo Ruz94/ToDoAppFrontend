@@ -34,27 +34,29 @@ function List({
   };
 
   return (
-    <div className="list">
-      <h4>{title}</h4>
-      <button type="button" className="list__title__modifier" onClick={handleShow}>
-        ✎
-      </button>
-      <button type="button" className="list__title__modifier" onClick={delList}>
-        🗑
-      </button>
-      {smShow ? <Modal title="Rename List" listname={title} status={smShow} onSave={saveChanges} handleClose={handleClose} /> : ""}
-      <AddTaskItem listId={listId} addTask={addTask} />
-      {tasks.map(({ text = "", completed = false, taskId }) => (
-        <TaskItem
-          key={`TaskItem_${taskId}`}
-          id={taskId}
-          text={text}
-          completed={completed}
-          deleteTask={deleteTask}
-          toggleTask={toggleTask}
-          updateTask={updateTask}
-        />
-      ))}
+    <div className="listContainer">
+      <div className="list">
+        <h4>{title}</h4>
+        <button type="button" className="list__title__modifier" onClick={handleShow}>
+          ✎
+        </button>
+        <button type="button" className="list__title__modifier" onClick={delList}>
+          🗑
+        </button>
+        {smShow ? <Modal title="Rename List" listname={title} status={smShow} onSave={saveChanges} handleClose={handleClose} /> : ""}
+        <AddTaskItem listId={listId} addTask={addTask} />
+        {tasks.map(({ text = "", completed = false, taskId }) => (
+          <TaskItem
+            key={`TaskItem_${taskId}`}
+            id={taskId}
+            text={text}
+            completed={completed}
+            deleteTask={deleteTask}
+            toggleTask={toggleTask}
+            updateTask={updateTask}
+          />
+        ))}
+      </div>
     </div>
   );
 }

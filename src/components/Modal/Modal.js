@@ -19,8 +19,8 @@ function Modal({ title = "", listname = "", status = false, handleClose = () => 
         <BootstrapModal.Title id="example-modal-sizes-title-sm">{title}</BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Body>
-        <label>
-          <input type="text" placeholder="Enter list name" value={listName} onChange={updateListName} />
+        <label className="Modal__label">
+          <input className="Modal__input" type="text" placeholder="Enter list name" value={listName} onChange={updateListName} />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>

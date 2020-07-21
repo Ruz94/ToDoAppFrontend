@@ -1,12 +1,23 @@
-.list {
-  & h4 {
-    color: $Loulou;
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 15px;
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  @include breakpoint(mobileonly) {
+    flex-direction: column;
   }
-  .list__title__modifier {
-    border: none;
-    background-color: transparent;
+
+  .list {
+    & h4 {
+      color: $Loulou;
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 15px;
+    }
+    .list__title__modifier {
+      border: none;
+      background-color: transparent;
+      color: $Loulou;
+    }
   }
 }
