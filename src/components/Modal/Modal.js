@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import "./Modal.css";
 
 function Modal({ title = "", listname = "", status = false, handleClose = () => {}, onSave = () => {} }) {
   const [listName, setListName] = useState(listname);

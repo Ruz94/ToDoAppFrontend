@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100%;
+}
+
+//default styling
+@import "constants/styling/colours.scss";
+@import "constants/styling/breakpoints.scss";
+
+@import "constants/styling/buttons.scss";
+@import "constants/styling/font.scss";
+
+//component styling
+@import "./App.scss";
+@import "components/AddTaskItem/AddTaskItem.scss";
+@import "components/CreateNewList/NewList.scss";
+@import "components/Header/Header.scss";
+@import "components/List/List.scss";
+@import "components/Modal/Modal.scss";
+@import "components/TaskItem/TaskItem.scss";

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import AddTaskItem from "../AddTaskItem/AddTaskItem";
 import TaskItem from "../TaskItem/TaskItem";
-import "./List.css";
 
 function List({
   listId,

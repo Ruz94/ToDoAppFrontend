@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./AddTaskItem.css";
 
 function TaskItem({ listId, addTask = () => {} }) {
   const [task, setTask] = useState("");

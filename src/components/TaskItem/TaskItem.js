@@ -1,5 +1,4 @@
 import React from "react";
-import "./TaskItem.css";
 
 function TaskItem({ text = "", completed = false, id, deleteTask = () => {}, toggleTask = () => {}, updateTask = () => {} }) {
   const delTask = () => {
