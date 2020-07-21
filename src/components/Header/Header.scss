@@ -1,21 +1,11 @@
-header,
-h1 {
-  background-color: #e0e0e0;
-  text-align: center;
-  margin: 0 auto;
-  padding: 5px;
-  color: $Loulou;
-  font-size: 30px;
-  font-weight: 600;
-}
-
-@media (min-width: 746px) {
-  header {
-    height: 85px;
-  }
-
-  header,
-  h1 {
-    padding: 10px;
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 10px;
+  background-color: $Loulou;
+  height: 55px;
+  img {
+    max-width: 65px;
   }
 }

@@ -1,9 +1,10 @@
 import React from "react";
+import logo from "assets/images/logo-sm.png";
 
 function Header() {
   return (
     <header>
-      <h1>ToDo Lists</h1>
+      <img src={logo} alt="Jot Logo" />
     </header>
   );
 }

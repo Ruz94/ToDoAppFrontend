@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import Header from "components/Header/Header";
 import List from "components/List/List";
@@ -167,27 +163,21 @@ function App() {
   return (
     <>
       <Header />
-      <Container>
-        <Row>
-          <Col sm={6} md={4}>
-            <NewList modifyList={modifyList} />
-            {lists.map(({ title = "", tasks = [], listId }) => (
-              <List
-                key={`list_${listId}`}
-                listId={listId}
-                title={title}
-                tasks={tasks}
-                deleteTask={deleteTask}
-                toggleTask={toggleTask}
-                updateTask={updateTask}
-                addTask={addTask}
-                modifyList={modifyList}
-                deleteList={deleteList}
-              />
-            ))}
-          </Col>
-        </Row>
-      </Container>
+      <NewList modifyList={modifyList} />
+      {lists.map(({ title = "", tasks = [], listId }) => (
+        <List
+          key={`list_${listId}`}
+          listId={listId}
+          title={title}
+          tasks={tasks}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+          updateTask={updateTask}
+          addTask={addTask}
+          modifyList={modifyList}
+          deleteList={deleteList}
+        />
+      ))}
     </>
   );
 }
