@@ -15,7 +15,7 @@
   font-size: inherit;
   font-family: inherit;
   &.newList__addIcon {
-    margin-top: 5px;
+    margin-top: 20px;
     width: 12rem;
     height: auto;
     .newList__circle {
@@ -47,8 +47,8 @@
           right: 0.0625rem;
           width: 0.625rem;
           height: 0.625rem;
-          border-top: 0.125rem solid $Bianca;
-          border-right: 0.125rem solid $Bianca;
+          border-top: 3px solid $Bianca;
+          border-right: 3px solid $Bianca;
           transform: rotate(45deg);
         }
       }
