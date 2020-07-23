@@ -19,7 +19,7 @@
   width: calc(100% - 20px);
 }
 
-@media (min-width: 576px) {
+@include breakpoint(mobileonly) {
   .addTaskItem > input {
     font-size: 15px;
   }
