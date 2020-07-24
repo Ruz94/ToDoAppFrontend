@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
+import { Button } from "components/Shared/Button";
 
 function NewList({ id, modifyList = () => {} }) {
   const [smShow, setSmShow] = useState(false);
@@ -14,6 +15,7 @@ function NewList({ id, modifyList = () => {} }) {
 
   return (
     <>
+      <Button />
       <div className="newList" onClick={handleShow}>
         <button type="button" className="newList__addIcon">
           <span className="newList__circle" aria-hidden="true">

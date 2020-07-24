@@ -2,7 +2,7 @@
   transition: $property $duration $ease;
 }
 
-.newList button {
+.styledButton button {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -14,11 +14,11 @@
   padding: 0;
   font-size: inherit;
   font-family: inherit;
-  &.newList__addIcon {
+  &.styledButton__element {
     margin-top: 20px;
     width: 12rem;
     height: auto;
-    .newList__circle {
+    .button__circle {
       @include slideAnimation;
       position: relative;
       display: block;
@@ -27,7 +27,7 @@
       height: 3rem;
       background: $Loulou;
       border-radius: 1.625rem;
-      .newList__arrow {
+      .button__arrow {
         @include slideAnimation;
         position: absolute;
         top: 0;
@@ -51,7 +51,7 @@
         }
       }
     }
-    .newList__text {
+    .button__text {
       @include slideAnimation;
       position: absolute;
       top: 0;
@@ -68,14 +68,14 @@
     }
   }
   &:hover {
-    .newList__circle {
+    .button__circle {
       width: 100%;
-      .newList__arrow {
+      .button__arrow {
         background: $Bianca;
         transform: translate(1rem, 0);
       }
     }
-    .newList__text {
+    .button__text {
       color: $Bianca;
     }
   }

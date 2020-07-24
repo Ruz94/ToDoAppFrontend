@@ -15,6 +15,8 @@ body {
 
 //component styling
 @import "./App.scss";
+@import "components/Shared/Button.scss";
+
 @import "components/AddTaskItem/AddTaskItem.scss";
 @import "components/CreateNewList/NewList.scss";
 @import "components/Header/Header.scss";
