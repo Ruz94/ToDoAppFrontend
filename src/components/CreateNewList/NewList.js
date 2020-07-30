@@ -14,18 +14,10 @@ function NewList({ id, modifyList = () => {} }) {
   };
 
   return (
-    <>
-      <Button />
-      <div className="newList" onClick={handleShow}>
-        <button type="button" className="newList__addIcon">
-          <span className="newList__circle" aria-hidden="true">
-            <span className="newList__arrow"></span>
-          </span>
-          <span className="newList__text">Add New List</span>
-        </button>
-      </div>
+    <div className="newList">
+      <Button clickHandler={handleShow} text="Add New List" />
       {smShow ? <Modal title="Create New List" status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}
-    </>
+    </div>
   );
 }
 
