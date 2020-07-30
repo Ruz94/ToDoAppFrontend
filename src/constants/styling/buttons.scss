@@ -16,7 +16,9 @@
   }
 
   &:not(:disabled):hover {
-    opacity: 0.8;
+    opacity: 0.9;
+    border: 1px solid $Loulou;
+    background-color: $Loulou;
   }
 
   &:disabled {
