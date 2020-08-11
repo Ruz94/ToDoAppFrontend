@@ -14,10 +14,12 @@
 }
 
 .addTaskItem > input {
+  padding: 10px;
+  line-height: 15px;
+  border-radius: 10px;
   background-color: transparent;
   border: 1px solid $Alto;
   font-size: 15px;
-  padding-left: 5px;
   width: calc(100% - 20px);
   height: 30px;
 }
