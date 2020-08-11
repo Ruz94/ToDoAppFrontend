@@ -15,10 +15,11 @@
 
 .addTaskItem > input {
   background-color: transparent;
-  border: 1px solid lightgray;
-  font-size: 13px;
+  border: 1px solid $Alto;
+  font-size: 15px;
   padding-left: 5px;
   width: calc(100% - 20px);
+  height: 30px;
 }
 
 @include breakpoint(mobileonly) {
