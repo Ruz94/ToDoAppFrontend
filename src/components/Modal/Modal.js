@@ -24,7 +24,7 @@ function Modal({ title = "", listname = "", status = false, handleClose = () => 
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button className="secondaryButton" onClick={handleClose}>
           Cancel
         </Button>
         <Button className="primaryButton" onClick={saveChanges} disabled={!listName}>

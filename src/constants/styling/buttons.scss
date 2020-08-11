@@ -28,3 +28,19 @@
     cursor: not-allowed;
   }
 }
+
+.secondaryButton {
+  color: $Loulou;
+  background: none;
+  letter-spacing: 1px;
+  border: 1px solid $Loulou;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 5px;
+
+  &:not(:disabled):hover {
+    border: 1px solid $Loulou;
+    background-color: transparent;
+    color: $Loulou;
+  }
+}
