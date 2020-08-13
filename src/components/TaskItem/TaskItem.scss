@@ -1,23 +1,36 @@
-.taskItem p {
-  margin: 0;
-  color: $Loulou;
-  font-size: 20px;
-  font-weight: 800;
-}
+.taskItem {
+  p {
+    margin: 0;
+    color: $Loulou;
+    font-size: 20px;
+    font-weight: 800;
 
-.taskItem p input {
-  border: none;
-  background: transparent;
-}
+    input {
+      border: none;
+      background: transparent;
+    }
 
-.taskItem p input[type="checkbox"] {
-  width: 15px;
-  display: inline-block;
-  margin: 0;
-}
+    input[type="checkbox"] {
+      width: 15px;
+      display: inline-block;
+      margin: 0;
 
-.taskItem p input[type="checkbox"]:hover {
-  transform: scale(1.5);
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+
+    @include breakpoint(mobileonly) {
+      font-size: 18px;
+    }
+  }
+
+  span {
+    margin: 0;
+    width: 10px;
+    display: inline-block;
+    cursor: pointer;
+  }
 }
 
 .taskItem__listItem {
@@ -29,16 +42,4 @@
 
 .taskItem__listItem--complete {
   text-decoration: line-through;
-}
-.taskItem p span {
-  margin: 0;
-  width: 10px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-@media (min-width: 576px) {
-  .taskItem p {
-    font-size: 18px;
-  }
 }
