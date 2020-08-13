@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 
 function Modal({ title = "", listname = "", status = false, handleClose = () => {}, onSave = () => {} }) {
   const [listName, setListName] = useState(listname);
@@ -24,12 +23,12 @@ function Modal({ title = "", listname = "", status = false, handleClose = () => 
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <Button className="secondaryButton" onClick={handleClose}>
+        <button type="button" className="secondaryButton" onClick={handleClose}>
           Cancel
-        </Button>
-        <Button className="primaryButton" onClick={saveChanges} disabled={!listName}>
+        </button>
+        <button type="button" className="primaryButton" onClick={saveChanges} disabled={!listName}>
           Save
-        </Button>
+        </button>
       </BootstrapModal.Footer>
     </BootstrapModal>
   );
